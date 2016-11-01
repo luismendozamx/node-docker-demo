@@ -4,7 +4,7 @@ import util from 'util';
 import config from './config/env';
 import app from './config/express';
 
-const debug = require('debug')('express-mongoose-es6-rest-api:index');
+const debug = require('debug')('node-docker-api:index');
 
 // plugin bluebird promise in mongoose
 mongoose.Promise = Promise;

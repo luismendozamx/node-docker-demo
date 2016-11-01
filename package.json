@@ -1,5 +1,5 @@
 {
-  "name": "express-mongoose-es6-rest-api",
+  "name": "node-docker-demo",
   "version": "1.0.0",
   "description": "A Boilerplate application for building REST APIs using express, mongoose in ES6 with code coverage",
   "author": "Kunal Kapadia <kunalkapadia12@gmail.com>",
@@ -21,7 +21,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:KunalKapadia/express-mongoose-es6-rest-api.git"
+    "url": "git@github.com:luismendozamx/node-docker-demo.git"
   },
   "keywords": [
     "express",
