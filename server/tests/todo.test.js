@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 import request from 'supertest-as-promised';
 import httpStatus from 'http-status';
 import chai, { expect } from 'chai';
+import _ from 'lodash';
 import app from '../../index';
 
 chai.config.includeStack = true;
@@ -46,6 +47,23 @@ describe('## Todo APIs', () => {
         })
         .catch(done);
     });
+
+    it('should create a new todo when description is empty', (done) => {
+      const _todo = _.clone(todo);
+      delete _todo.description;
+
+      request(app)
+        .post('/api/todos')
+        .send(_todo)
+        .expect(httpStatus.OK)
+        .then((res) => {
+          expect(res.body.title).to.equal(todo.title);
+          expect(res.body.completed).to.equal(false);
+          expect(res.body.description).to.equal('');
+          done();
+        })
+        .catch(done);
+    });
   });
 
   describe('# GET /api/todos/:todoId', () => {
@@ -76,12 +94,14 @@ describe('## Todo APIs', () => {
   describe('# PUT /api/todos/:todoId', () => {
     it('should update todo details', (done) => {
       todo.title = 'KK';
+      todo.completed = true;
       request(app)
         .put(`/api/todos/${todo._id}`)
         .send(todo)
         .expect(httpStatus.OK)
         .then((res) => {
-          expect(res.body.title).to.equal('KK');
+          expect(res.body.title).to.equal(todo.title);
+          expect(res.body.completed).to.equal(todo.completed);
           expect(res.body.description).to.equal(todo.description);
           done();
         })
