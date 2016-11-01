@@ -26,5 +26,25 @@ export default {
       username: Joi.string().required(),
       password: Joi.string().required()
     }
+  },
+
+  // POST /api/todos
+  createTodo: {
+    body: {
+      title: Joi.string().required(),
+      description: Joi.string(),
+    }
+  },
+
+  // UPDATE /api/todos/:todoId
+  updateTodo: {
+    body: {
+      title: Joi.string().required(),
+      description: Joi.string(),
+      completed: Joi.boolean().required()
+    },
+    params: {
+      todoId: Joi.string().hex().required()
+    }
   }
 };
