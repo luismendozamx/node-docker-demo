@@ -33,3 +33,35 @@ Run tests inside docker container.
 ```sh
 docker-compose run node-docker npm run test
 ```
+
+Build the image for pushing to Docker hub:
+```sh
+docker build -t luismendozamx/node-docker .
+```
+
+Push the image:
+```sh
+docker push luismendozamx/node-docker:latest
+```
+
+Pull the latest version of the image:
+```sh
+docker pull luismendozamx/node-docker:latest
+```
+
+CI flow in Jenkins:
+```sh
+IMAGE_NAME="luismendozamx/node-docker:latest"
+
+# login
+docker login -u luismendozamx -p mySuperSecretPassword
+
+#build image
+docker build -t $IMAGE_NAME .
+
+# run tests
+docker run --rm $IMAGE_NAME npm run test
+
+# push image
+docker push $IMAGE_NAME
+```
