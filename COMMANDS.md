@@ -28,3 +28,8 @@ docker-compose up
 ```
 
 Change db config to linked container MongoDB.
+
+Run tests inside docker container.
+```sh
+docker-compose run node-docker npm run test
+```

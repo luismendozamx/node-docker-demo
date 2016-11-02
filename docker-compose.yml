@@ -5,7 +5,7 @@ version: '2'
 services:
 
   # app
-  investify_api:
+  node-docker:
     build: .
     image: node-docker
     command: npm start
