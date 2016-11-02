@@ -1,0 +1,26 @@
+# Use version 2
+version: '2'
+
+# Define services
+services:
+
+  # app
+  investify_api:
+    build: .
+    image: node-docker
+    command: npm start
+    environment:
+      NODE_ENV: development
+    ports:
+      - '4040:4040'
+    volumes:
+      - .:/home/app/node-docker
+      - /home/app/node-docker/node_modules
+    links:
+      - mongo
+
+  # MongoDB built from official image
+  mongo:
+    image: mongo
+    ports:
+      - '27017:27017'
